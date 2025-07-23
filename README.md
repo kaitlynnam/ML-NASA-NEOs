@@ -7,15 +7,18 @@ Determine weather Near Earth Objects (NEOs) are potentially hazardous to the orb
 | Model             | ROC AUC | Accuracy | F1 (hazardous) | Recall (hazardous) | Notes                          |
 |:------------------|:-------:|:--------:|:--------------:|:------------------:|-------------------------------|
 | Logistic Regression (no grid search) | 0.947   | 91.42%      | 0.67            | 0.67               | Simple, interpretable baseline |
-| Random Forest      | 0.8354848084004779 | 73.65%     | 0.88           | 0.46               | Handles nonlinearity better    |
-| XGBoost (Calibrated)| 0.9288560826406859|   82.67%   | 0.60       | 0.68          | Tuned scale_pos_weight + calibration + threshold tuning |
+| Random Forest      | 0.835 | 73.65%     | 0.88           | 0.46               | Handles nonlinearity better    |
+| XGBoost (Calibrated)| 0.928|   82.67%   | 0.60       | 0.68          | Tuned scale_pos_weight + calibration + threshold tuning |
 
 
 # Metrics Explained
- * ROC AUC -
- * Accuracy -
- * F1 (hazardous) -
- * Recall (hazardous) -
+ * ROC AUC - Measures how well your model separates the two classes (hazardous vs non-hazardous) across all classification thresholds. The closer to 1, the better your model distinguishes hazardous asteroids from safe ones regardless of the decision cutoff. 0.5 means random guessing; above 0.9 is excellent.
+   
+ * Accuracy - The proportion of total predictions your model got right (both hazardous and non-hazardous). It’s easy to understand but can be misleading if your classes are imbalanced (which they are). High accuracy sounds good, but if hazardous asteroids are rare, your model might just be guessing “non-hazardous” a lot and still get high accuracy.
+   
+ * F1 (hazardous) - The harmonic mean of precision and recall specifically for the hazardous class. Balances false positives and false negatives — crucial when missing a hazardous asteroid (false negative) or over-warning (false positive) both have costs. Higher F1 means better overall detection of hazardous asteroids, balancing precision and recall.
+
+ * Recall (hazardous) - The percentage of actual hazardous asteroids your model correctly identifies. Critical for safety — you want to catch as many hazardous asteroids as possible (minimize false negatives). High recall means fewer missed hazardous asteroids, even if you sometimes raise false alarms.
   
 
 # Final Takeaway
