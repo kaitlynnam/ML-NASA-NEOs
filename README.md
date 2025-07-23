@@ -12,6 +12,7 @@ Determine weather Near Earth Objects (NEOs) are potentially hazardous to the orb
 
 
 # Metrics Explained
+
  * ROC AUC - Measures how well your model separates the two classes (hazardous vs non-hazardous) across all classification thresholds. The closer to 1, the better your model distinguishes hazardous asteroids from safe ones regardless of the decision cutoff. 0.5 means random guessing; above 0.9 is excellent.
    
  * Accuracy - The proportion of total predictions your model got right (both hazardous and non-hazardous). It’s easy to understand but can be misleading if your classes are imbalanced (which they are). High accuracy sounds good, but if hazardous asteroids are rare, your model might just be guessing “non-hazardous” a lot and still get high accuracy.
@@ -22,3 +23,10 @@ Determine weather Near Earth Objects (NEOs) are potentially hazardous to the orb
   
 
 # Final Takeaway
+
+ * Logistic Regression delivers the highest ROC AUC and accuracy, making it a strong, simple baseline. But its recall and F1 for hazardous asteroids are moderate, meaning it misses some hazardous cases and isn’t great at balancing false positives and negatives.
+   
+ * Random Forest has a noticeably lower ROC AUC and accuracy but shines with the highest F1 score on hazardous asteroids. This means it’s better at balancing precision and recall on the critical class but misses more overall positives (lower recall).
+   
+ * XGBoost (Calibrated) hits a sweet spot—strong ROC AUC close to logistic regression, better recall than both models, and improved calibration + threshold tuning that helps catch more hazardous asteroids while controlling false alarms. However, its F1 is slightly lower than Random Forest, suggesting a trade-off in precision.
+
