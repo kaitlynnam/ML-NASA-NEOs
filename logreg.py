@@ -2,6 +2,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
 import seaborn as sns
+import joblib
 
 from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import train_test_split, GridSearchCV
@@ -104,3 +105,5 @@ disp = ConfusionMatrixDisplay(
 disp.plot(cmap=plt.cm.Blues)
 plt.title('Confusion Matrix')
 plt.show()
+
+joblib.dump((grid_search.best_estimator_), 'logreg_model.pkl')

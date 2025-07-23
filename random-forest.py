@@ -2,6 +2,7 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
+import joblib
 
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.tree import DecisionTreeClassifier
@@ -10,6 +11,7 @@ from sklearn.model_selection import train_test_split, GridSearchCV
 from imblearn.pipeline import Pipeline
 from sklearn.compose import ColumnTransformer
 from sklearn.impute import SimpleImputer
+
 from sklearn.preprocessing import OneHotEncoder
 from sklearn.metrics import classification_report, confusion_matrix, roc_auc_score
 from imblearn.over_sampling import SMOTE
@@ -105,3 +107,4 @@ ax[1].set_title("Class Distribution (Test)")
 plt.tight_layout()
 plt.show()
 
+joblib.dump((grid_search.best_estimator_), 'random_forest_model.pkl')
