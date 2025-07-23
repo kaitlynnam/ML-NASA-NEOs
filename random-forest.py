@@ -46,7 +46,7 @@ pipeline = Pipeline([
 ])
 
 param_grid = {
-    'forest__n_estimators': [10, 100, 500],
+    'forest__n_estimators': [10, 100, 500, 1000],
     'forest__max_depth': [3, 5, 7, 10],
     'forest__min_samples_split': [2, 5, 10],
     'forest__min_samples_leaf': [1, 2, 4]
@@ -70,7 +70,7 @@ plt.xlabel("Predicted")
 plt.ylabel("Actual")
 plt.show()
 
-grid_search = GridSearchCV(pipeline, param_grid, cv=5, scoring='accuracy', n_jobs=-1, verbose=2)
+grid_search = GridSearchCV(pipeline, param_grid, cv=5, scoring='accuracy', n_jobs=-1, verbose=2) #n_job=-1 allows the model to use all of the computer's cores, verbose=2 means it will give real time logs
 grid_search.fit(X_train, y_train)
 
 print("Best parameters:", grid_search.best_params_)
