@@ -72,6 +72,7 @@ plt.xlabel("Predicted")
 plt.ylabel("Actual")
 plt.show()
 
+
 grid_search = GridSearchCV(pipeline, param_grid, cv=5, scoring='accuracy', n_jobs=-1, verbose=2) #n_job=-1 allows the model to use all of the computer's cores, verbose=2 means it will give real time logs
 grid_search.fit(X_train, y_train)
 
