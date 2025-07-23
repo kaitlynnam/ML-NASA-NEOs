@@ -13,13 +13,17 @@ Determine weather Near Earth Objects (NEOs) are potentially hazardous to the orb
 
 # Metrics Explained
 
- * ROC AUC - Measures how well your model separates the two classes (hazardous vs non-hazardous) across all classification thresholds. The closer to 1, the better your model distinguishes hazardous asteroids from safe ones regardless of the decision cutoff. 0.5 means random guessing; above 0.9 is excellent.
-   
- * Accuracy - The proportion of total predictions your model got right (both hazardous and non-hazardous). It’s easy to understand but can be misleading if your classes are imbalanced (which they are). High accuracy sounds good, but if hazardous asteroids are rare, your model might just be guessing “non-hazardous” a lot and still get high accuracy.
-   
- * F1 (hazardous) - The harmonic mean of precision and recall specifically for the hazardous class. Balances false positives and false negatives — crucial when missing a hazardous asteroid (false negative) or over-warning (false positive) both have costs. Higher F1 means better overall detection of hazardous asteroids, balancing precision and recall.
+ * ROC AUC – Measures how well the model separates hazardous from non-hazardous asteroids across all thresholds.
+Closer to 1 is better; 0.5 = random guessing. Above 0.9 = excellent.
 
- * Recall (hazardous) - The percentage of actual hazardous asteroids your model correctly identifies. Critical for safety — you want to catch as many hazardous asteroids as possible (minimize false negatives). High recall means fewer missed hazardous asteroids, even if you sometimes raise false alarms.
+ * Accuracy – Overall correctness of predictions.
+Misleading with imbalanced data—can look high even if hazardous cases are missed.
+
+ * F1 (Hazardous) – Balances precision and recall for hazardous class.
+Useful when both false positives and false negatives matter.
+
+ * Recall (Hazardous) – How many actual hazardous asteroids were correctly identified.
+Crucial for safety-critical applications—higher recall = fewer missed threats.
   
 
 # Final Takeaway
@@ -31,3 +35,4 @@ Determine weather Near Earth Objects (NEOs) are potentially hazardous to the orb
  * XGBoost (Calibrated) hits a sweet spot—strong ROC AUC close to logistic regression, better recall than both models, and improved calibration + threshold tuning that helps catch more hazardous asteroids while controlling false alarms. However, its F1 is slightly lower than Random Forest, suggesting a trade-off in precision.
 
 # WINNER: XGBoost!!!
+If you’re trying to detect as many hazardous NEOs as possible while still maintaining strong overall performance, XGBoost wins. It’s the best choice when false negatives are unacceptable.
